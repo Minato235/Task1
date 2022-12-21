@@ -53,29 +53,29 @@ app.delete("/task/:id",async (req,res,next)=>{
     res.status(500).json({err:'isErrored deletete section'})
   }}
   )
-app.put("/task",async (req, res) => {
-    const id=req.body.id;
-    const body=req.body;
-    const data =await User.update(body,{
-    where:{
-        id:id
-    }
-});
-if(data[0]===0){
-    return res.status(200).json({
-        success:false,
-        error:"No user found"
-    })
-}
-return res.status(200).json({
-    success:true
-})
+// app.put("/task",async (req, res) => {
+//     const id=req.body.id;
+//     const body=req.body;
+//     const data =await User.update(body,{
+//     where:{
+//         id:id
+//     }
+// });
+// if(data[0]===0){
+//     return res.status(200).json({
+//         success:false,
+//         error:"No user found"
+//     })
+// }
+// return res.status(200).json({
+//     success:true
+// })
 
 
 sequelize.sync()
     .then(() => {
-        app.listen(3000)
+        app.listen(4000)
     })
     .catch((err) => {
         console.log(err);
-    })})
+    })
