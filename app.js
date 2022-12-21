@@ -30,6 +30,10 @@ app.post("/task", async (req, res) => {
         newUserDetail:data
     })
 })
+app.get("/task",async(req,res)=>{
+    const users=await User.findAll();
+    res.status(200).json(users);
+})
 
 
 
