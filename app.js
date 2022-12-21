@@ -34,7 +34,7 @@ app.get("/task",async(req,res)=>{
     const users=await User.findAll();
     res.status(200).json(users);
 })
-
+//http://localhost:4000/task/:id
 app.delete("/task/:id",async (req,res,next)=>{
   
     try{
@@ -53,24 +53,27 @@ app.delete("/task/:id",async (req,res,next)=>{
     res.status(500).json({err:'isErrored deletete section'})
   }}
   )
-// app.put("/task",async (req, res) => {
-//     const id=req.body.id;
-//     const body=req.body;
-//     const data =await User.update(body,{
-//     where:{
-//         id:id
-//     }
-// });
-// if(data[0]===0){
-//     return res.status(200).json({
-//         success:false,
-//         error:"No user found"
-//     })
-// }
-// return res.status(200).json({
-//     success:true
-// })
-
+app.put("/task",async(req,res)=>{
+    let id = req.body.id;
+    console.log(id)
+    let body = req.body;
+    let data = await User.update(body, {
+        where: {
+        id: id
+        }
+        });
+        if (data[0] === 0) {
+            return res.status(200).json({
+            success: false,
+            error: "No user found with this id"
+            })
+            return res.status(200).json({
+                success: true,
+                "number of rows changed": data
+                })
+        
+            }
+})
 
 sequelize.sync()
     .then(() => {
